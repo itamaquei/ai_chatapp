@@ -40,4 +40,4 @@ def main(page:Page):
         _controls_row
     )
 
-app(target=main)
+app(target=main, view=WEB_BROWSER)
