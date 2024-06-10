@@ -13,11 +13,15 @@ def main(page:Page):
             page.update()
         if user_input.value:
             response = ai.chat(model='llama3', messages=[{"role": 'user', "content": user_input.value}])
-            user_input.value = ""
-            txt = Text(value=response['message']['content'])
-            page.add(txt)
-            print(response['message']['content'])
+
+        if txt.value:
+            txt.value = ""
             page.update()
+
+        user_input.value = ""
+        txt.value = response['message']['content']
+        page.add(txt)
+        page.update()
 
 
     user_input:TextField = TextField(hint_text="enter message", width=350, autocorrect=True)
@@ -27,6 +31,8 @@ def main(page:Page):
         spacing=5
     )
     answer = Column()
+
+    txt = Text()
 
     _container:Container = Container()
 
